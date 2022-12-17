@@ -28,3 +28,41 @@ executeAfterWait();
 
 // to print a document
 // window.print()
+
+
+// fmovies.to
+// this website clears console, DOM inspector and network tab in Dev Tools, so need a secondary means of extracting the embeds.
+// the M.O. I see good enough as well as expditent
+// creating the iframe to embed the page that will get scraped
+
+// start from about:home or about:privatebrowsing
+if (document.location != 'about:home' && document.location != 'about:privatebrowsing'){
+	console.error(new Error("start running this snippet from a new tab that's got Dev Tools open"));
+}
+
+document.location = 'https://fmovies.to'
+// here wait until the page loads and settles
+while (document.body.children.length != 0){
+	for (var d of document.body.children){
+		d.remove();
+	};
+};
+var frame = document.createElement('iframe');
+frame.style.height = "3000px";
+frame.style.width = "100%";
+frame.style.border="none";
+var serialStartPage="https://fmovies.to/series/slow-horses-ro86y/1-1";
+frame.src=serialStartPage;
+frame.addEventListener("DOMContentLoaded", ()=>{
+	console.info("Endrias said this")
+});
+document.body.appendChild(frame);
+
+// here wait for DOM of the embed to load
+document.frame = frame.contentDocument;
+
+function clickSeasonButton(){
+	document.frame.querySelector('button.btn').click()
+}
+
+clickSeasonButton();
