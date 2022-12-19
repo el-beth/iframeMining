@@ -10,7 +10,13 @@ for (var model of m.getElementsByClassName('row')){
 		countryOfOrigin:model.querySelector('.origin').textContent
 	})
 }
+/*
+	In and SQL environment:
 
+	the array is the table
+	each row is a model
+	each col is the model object's filed(property)
+*/
 // an array of models follows
 
 var models = [
