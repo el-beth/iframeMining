@@ -67,24 +67,24 @@ function clickSeasonButton(){
 
 clickSeasonButton();
 
+
+
 function iterateOverServers(){
-	var ret=[];
+	var ret=[], loopDelayMS=300;
+	function executeAfterWait(){
+		if (document.frame.querySelector('iframe').src == start){
+			setTimeout(executeAfterWait, loopDelayMS);
+		}
+		else ret.push(document.frame.querySelector('iframe').src);
+	};
 	for (var i of document.frame.getElementsByClassName('server')){
+		var start=document.frame.querySelector('iframe').src;
 		i.click();
+		executeAfterWait();
 		// M.O., check the src of the embed and read and push to the returnable array when the src changes
 	};
 }
 
-var start=document.frame.querySelector('iframe').src;
-var loopDelayMS=300;
-function executeAfterWait(){
-	if (document.frame.querySelector('iframe').src == start){
-		setTimeout(executeAfterWait, loopDelayMS);
-	}
-	else {
-		ret.push(document.frame.querySelector('iframe').src);
-	}
-};
 
 for (var i of document.frame.getElementsByClassName('server')){
 	while(document.frame.querySelector('iframe').src === start){
