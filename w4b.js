@@ -1,3 +1,6 @@
+// THE FOLLOWING IS ALSO A SET OF SNIPPETS RUN ON THE W4B OLD WEBSITE,
+// CAN WORK ON NEW SITE IF SLIGHTLY MODED
+
 var models=[], m = document.querySelector('#middle');
 for (var model of m.getElementsByClassName('row')){
 	models.push({ name:model.querySelector('p>a').textContent,
